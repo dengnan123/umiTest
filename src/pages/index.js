@@ -1,15 +1,15 @@
 // import React, { Component } from 'react';
-import { Button } from 'antd';
-import router from 'umi/router';
-import styles from './index.css';
+import { Button } from "antd";
+import router from "umi/router";
+import styles from "./index.css";
 
 export default function() {
   function click() {
-    router.push('/test');
+    router.push("/test");
   }
   return (
     <div className={styles.normal}>
-      <Button onClick={click}>test页面</Button>
+      <Button onClick={click}>test页面shell部署</Button>
     </div>
   );
 }
