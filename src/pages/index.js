@@ -9,7 +9,7 @@ export default function() {
   }
   return (
     <div className={styles.normal}>
-      <Button onClick={click}>点击我啊老哥</Button>
+      <Button onClick={click}>test页面</Button>
     </div>
   );
 }
