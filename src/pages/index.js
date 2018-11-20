@@ -14,6 +14,7 @@ export default function() {
     <div className={styles.normal}>
       <Button onClick={click}>test112312qweqw</Button>
       <Button onClick={click1}>test212312qweqwe3123</Button>
+      <Button onClick={click1}>测试</Button>
     </div>
   );
 }
