@@ -12,8 +12,8 @@ export default function() {
   }
   return (
     <div className={styles.normal}>
-      <Button onClick={click}>test页面shell部署</Button>
-      <Button onClick={click1}>shell部署</Button>
+      <Button onClick={click}>test1</Button>
+      <Button onClick={click1}>test2</Button>
     </div>
   );
 }
