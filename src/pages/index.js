@@ -12,8 +12,8 @@ export default function() {
   }
   return (
     <div className={styles.normal}>
-      <Button onClick={click}>test1</Button>
-      <Button onClick={click1}>test2</Button>
+      <Button onClick={click}>test112312</Button>
+      <Button onClick={click1}>test2123123123</Button>
     </div>
   );
 }
