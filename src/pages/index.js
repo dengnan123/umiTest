@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'dva';
-import PropTypes from 'prop-types';
-import { Row, Col, Table, Popconfirm, Divider, Icon } from 'antd';
-import styles from './index.less';
+import React, { Component } from "react";
+import { connect } from "dva";
+import PropTypes from "prop-types";
+import { Row, Col, Table, Popconfirm, Divider, Icon, Card } from "antd";
+import styles from "./index.less";
 
 class FleetList extends Component {
   render() {
@@ -11,13 +11,13 @@ class FleetList extends Component {
 
     const {
       location: {
-        query: { pageIndex = 1, countPerPage = 10 },
-      },
+        query: { pageIndex = 1, countPerPage = 10 }
+      }
     } = this.props;
     const tableProps = {
-      rowKey: 'id',
+      rowKey: "id",
       dataSource: list,
-      loading: loading.effects['indexModel/getList'],
+      loading: loading.effects["indexModel/getList"],
       className: styles.table,
       pagination: {
         showQuickJumper: true,
@@ -27,24 +27,36 @@ class FleetList extends Component {
         onShowSizeChange: this._onShowSizeChange,
         total: totalRecords || null,
         pageSize: parseInt(countPerPage, 10),
-        current: parseInt(pageIndex, 10),
-      },
+        current: parseInt(pageIndex, 10)
+      }
     };
 
     const columns = [
       {
-        title: '',
-        dataIndex: 'title',
-        key: 'title',
+        title: "",
+        dataIndex: "title",
+        key: "title",
         className: styles.span,
-        render: (text, record) => <span>{text}</span>,
-      },
+        render: (text, record) => <span>{text}</span>
+      }
     ];
     return (
       <div className={styles.pageContent}>
         <Row type="flex" justify="center">
           <Col span={24}>
-            <Table {...tableProps} columns={columns} />
+            {/* <Table {...tableProps} columns={columns} /> */}
+            {list.map(value => {
+              return (
+                <Card
+                  key={value.id}
+                  title={value.title}
+                  bordered={false}
+                  className={styles.cardSpan}
+                >
+                  {value.body}
+                </Card>
+              );
+            })}
           </Col>
         </Row>
       </div>
@@ -58,7 +70,7 @@ function indexStateToProps(state) {
   return {
     loading,
     list,
-    count,
+    count
   };
 }
 
