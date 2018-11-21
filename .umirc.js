@@ -12,8 +12,9 @@ export default {
         routes: {
           exclude: [],
         },
-        hardSource: false,
+        hardSource: false
       }],
     ],
+    outputPath:'./docs'
   }
   
