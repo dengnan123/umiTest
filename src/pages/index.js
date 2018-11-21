@@ -1,25 +1,65 @@
-// import React, { Component } from 'react';
-import { Button } from "antd";
-import router from "umi/router";
-import styles from "./index.css";
+import React, { Component } from 'react';
+import { connect } from 'dva';
+import PropTypes from 'prop-types';
+import { Row, Col, Table, Popconfirm, Divider, Icon } from 'antd';
+import styles from './index.less';
 
-export default function() {
-  function click() {
-    router.push("/test");
+class FleetList extends Component {
+  render() {
+    const { loading } = this.props;
+    const { list, totalRecords } = this.props;
+
+    const {
+      location: {
+        query: { pageIndex = 1, countPerPage = 10 },
+      },
+    } = this.props;
+    const tableProps = {
+      rowKey: 'id',
+      dataSource: list,
+      loading: loading.effects['indexModel/getList'],
+      className: styles.table,
+      pagination: {
+        showQuickJumper: true,
+        showSizeChanger: true,
+        // hideOnSinglePage: true,
+        onChange: this._changePageIndex,
+        onShowSizeChange: this._onShowSizeChange,
+        total: totalRecords || null,
+        pageSize: parseInt(countPerPage, 10),
+        current: parseInt(pageIndex, 10),
+      },
+    };
+
+    const columns = [
+      {
+        title: '',
+        dataIndex: 'title',
+        key: 'title',
+        className: styles.span,
+        render: (text, record) => <span>{text}</span>,
+      },
+    ];
+    return (
+      <div className={styles.pageContent}>
+        <Row type="flex" justify="center">
+          <Col span={24}>
+            <Table {...tableProps} columns={columns} />
+          </Col>
+        </Row>
+      </div>
+    );
   }
-  function click1() {
-    router.push("/test1");
-  }
-  function click2() {
-    router.push("/test2");
-  }
-  return (
-    <div>
-      <Button onClick={click}>测试31</Button>
-      <Button onClick={click1}>策士4</Button>
-      <Button onClick={click2}>测试3</Button>
-      <Button onClick={click2}>123请问23423423</Button>
-      <Button onClick={click2}>345请问2342343</Button>
-    </div>
-  );
 }
+
+function indexStateToProps(state) {
+  const { loading } = state;
+  const { list, count } = state.indexModel;
+  return {
+    loading,
+    list,
+    count,
+  };
+}
+
+export default connect(indexStateToProps)(FleetList);
