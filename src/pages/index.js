@@ -18,6 +18,7 @@ export default function() {
       <Button onClick={click}>测试1</Button>
       <Button onClick={click1}>策士</Button>
       <Button onClick={click2}>测试</Button>
+      <Button onClick={click2}>......</Button>
     </div>
   );
 }
