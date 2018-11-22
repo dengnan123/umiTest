@@ -1,20 +1,21 @@
-
 // ref: https://umijs.org/config/
 export default {
-    plugins: [
-      // ref: https://umijs.org/plugin/umi-plugin-react.html
-      ['umi-plugin-react', {
+  plugins: [
+    // ref: https://umijs.org/plugin/umi-plugin-react.html
+    [
+      "umi-plugin-react",
+      {
         antd: true,
         dva: true,
         dynamicImport: false,
-        title: 'myapp',
+        title: "myapp",
         dll: false,
         routes: {
-          exclude: [],
+          exclude: []
         },
         hardSource: false
-      }],
-    ],
-    outputPath:'./docs'
-  }
-  
+      }
+    ]
+  ]
+  // outputPath:'./docs'
+};
