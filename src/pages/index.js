@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "dva";
 import PropTypes from "prop-types";
-import { Row, Col, Table, Popconfirm, Divider, Icon, Card } from "antd";
+import { Row, Col, Table, Popconfirm, Divider, Icon, Card, Input } from "antd";
 import styles from "./index.less";
 
 class FleetList extends Component {
+  state = {
+    isRes: true
+  };
+
+  focus = () => {
+    this.setState({
+      isRes: false
+    });
+  };
+
   render() {
     const { loading } = this.props;
     const { list, totalRecords } = this.props;
-
+    const { isRes } = this.state;
     const {
       location: {
         query: { pageIndex = 1, countPerPage = 10 }
@@ -42,6 +52,11 @@ class FleetList extends Component {
     ];
     return (
       <div className={styles.pageContent}>
+        <Input
+          className={isRes ? styles.redSty : styles.normalSty}
+          onFocus={this.focus}
+        />
+        <input style={{ width: 120 }} />
         <Row type="flex" justify="center">
           <Col span={24}>
             {/* <Table {...tableProps} columns={columns} /> */}
