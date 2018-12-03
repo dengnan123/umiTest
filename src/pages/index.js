@@ -1,7 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "dva";
+import router from "umi/router";
 import PropTypes from "prop-types";
-import { Row, Col, Table, Popconfirm, Divider, Icon, Card, Input } from "antd";
+import {
+  Row,
+  Col,
+  Table,
+  Popconfirm,
+  Divider,
+  Icon,
+  Card,
+  Input,
+  Button
+} from "antd";
 import styles from "./index.less";
 
 class FleetList extends Component {
@@ -13,6 +24,10 @@ class FleetList extends Component {
     this.setState({
       isRes: false
     });
+  };
+
+  butClick = () => {
+    router.push("/test");
   };
 
   render() {
@@ -52,6 +67,7 @@ class FleetList extends Component {
     ];
     return (
       <div className={styles.pageContent}>
+        <Button onClick={this.butClick}>点击到时间轴</Button>
         <Input
           className={isRes ? styles.redSty : styles.normalSty}
           onFocus={this.focus}
